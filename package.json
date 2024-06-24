@@ -14,5 +14,9 @@
   "type": "module",
   "workspaces": [
     "src/user_profiles_frontend"
-  ]
+  ],
+  "dependencies": {
+    "@connect2ic/core": "^0.2.0-beta.24",
+    "@connect2ic/react": "^0.2.0-beta.24"
+  }
 }

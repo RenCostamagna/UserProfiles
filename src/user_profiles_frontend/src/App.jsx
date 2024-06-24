@@ -1,31 +1,43 @@
-import { useState } from 'react';
-import { user_profiles_backend } from 'declarations/user_profiles_backend';
+import { InternetIdentity} from "@connect2ic/core/providers"
+import { createClient} from "@connect2ic/core"
+import { Connect2ICProvider , ConnectButton, ConnectDialog  } from "@connect2ic/react"
+import "@connect2ic/core/style.css"
+import * as user_profiles_backend from "declarations/user_profiles_backend"
+import { User } from "./components/User"
+import React from "react"
+
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    user_profiles_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
-  return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
-  );
+  return (  
+    <div className="min-h-screen">
+      <header className="relative flex justify-start items-center p-4 border-b border-gray-600">
+        <div className="absolute top-2 right-2">
+          <ConnectButton />
+        </div>
+      </header>
+      <ConnectDialog />
+      <User />
+    </div>
+  )
 }
 
-export default App;
+const client = createClient({
+  canisters: {
+    user_profiles_backend,
+  },
+  providers: [
+  new InternetIdentity({providerUrl:"http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai" })
+  ],
+  globalProviderConfig: {
+    dev: true,
+  }
+})
+
+export default () => ( 
+  <Connect2ICProvider client={client}>
+    <App />
+  </Connect2ICProvider>
+)
+
+
+

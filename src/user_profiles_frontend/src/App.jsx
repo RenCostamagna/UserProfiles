@@ -1,32 +1,42 @@
-import { InternetIdentity} from "@connect2ic/core/providers"
-import { createClient} from "@connect2ic/core"
+import { InternetIdentity } from "@connect2ic/core/providers/internet-identity"
+import { createClient } from "@connect2ic/core"
 import { Connect2ICProvider , ConnectButton, ConnectDialog  } from "@connect2ic/react"
 import "@connect2ic/core/style.css"
 import * as user_profiles_backend from "declarations/user_profiles_backend"
-import { User } from "./components/User"
 import React from "react"
+
+import NewUser from "./components/NewUser"
+import { GetUser } from "./components/GetUser"
+import { UpdateUser } from "./components/UpdateUser"
+import { DeleteUser } from "./components/DeleteUser"
+import { Home } from "./components/Home"
 
 
 function App() {
-  return (  
-    <div className="min-h-screen">
-      <header className="relative flex justify-start items-center p-4 border-b border-gray-600">
-        <div className="absolute top-2 right-2">
-          <ConnectButton />
-        </div>
+  return (
+    <div className="App">
+      <div>
+        <h1>User Profiles</h1>
+          <div className="auth-section">
+            <ConnectButton />
+          </div>
+        <ConnectDialog />
+      </div>
+      <header className="App-header">
+        
+        <Home/>
+
       </header>
-      <ConnectDialog />
-      <User />
     </div>
-  )
-}
+  );
+};
 
 const client = createClient({
   canisters: {
     user_profiles_backend,
   },
   providers: [
-  new InternetIdentity({providerUrl:"http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai" })
+  new InternetIdentity({providerUrl:"http://127.0.0.1:4943/?canisterId=br5f7-7uaaa-aaaaa-qaaca-cai" })
   ],
   globalProviderConfig: {
     dev: true,

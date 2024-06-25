@@ -33,7 +33,7 @@ actor UserProfile {
     let interName: Text = Principal.toText(msg.caller);
     let user = { username=username; fullname=fullname; internetName=interName; email=email; bio=bio };
     userList.put(Nat32.toText(generateID()), user);
-    Debug.print("Nuevo usuario creado! ID: " #Nat32.toText(id));
+    Debug.print("New user create! ID: " #Nat32.toText(id));
     return();
   };
   
@@ -59,7 +59,7 @@ actor UserProfile {
       case (?currentUser) {
         let newUser = { username=username; fullname=fullname; internetName=interName; email=email; bio=bio };
         userList.put(id, newUser);
-        Debug.print("Nuevo usuario creado! ID: " # id);
+        Debug.print("New user create! ID: " # id);
         return true;
       };
     };
@@ -73,7 +73,7 @@ actor UserProfile {
       };
       case (_) {
         ignore userList.remove(id);
-        Debug.print("Usuario borrado ID: " # id);
+        Debug.print("User deleted ID: " # id);
         return true;
       };
     };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCanister } from '@connect2ic/react';
+import "./StylesComponents.css";
 
 const UpdateUser = () => {
   const [id, setUserId] = useState();
@@ -14,7 +15,7 @@ const UpdateUser = () => {
 
     try{
         await functions.updateUser(id,username,fullname,email,bio);
-        console.log(newUser)
+        console.log("User updated")
 
     }catch(error){
 
@@ -24,9 +25,9 @@ const UpdateUser = () => {
   };
 
   return (
-    <div>
-      <h3>Update user</h3>
-      <form onSubmit={handleSubmit}>
+    <div className='update-user-container'>
+      <h3 className='update-user-title'>Update user</h3>
+      <form className='update-user-form' onSubmit={handleSubmit}>
         <label>
          ID:
           <input type="text" value={id} onChange={(e) => setUserId(e.target.value)} />
@@ -47,7 +48,7 @@ const UpdateUser = () => {
           Bio:
           <input type="text" value={bio} onChange={(e) => setBio(e.target.value)} />
         </label>
-        <button type="submit">Save change</button>
+        <button className='update-user-form-button' type="submit">Save change</button>
       </form>
     </div>
   );

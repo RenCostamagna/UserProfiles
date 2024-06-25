@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCanister } from '@connect2ic/react';
+import "./StylesComponents.css";
 
 const GetUser = () => {
   const [userID, setUserID] = useState([]);
@@ -8,7 +9,7 @@ const GetUser = () => {
   useEffect(() => {
     const getUsersBackend = async () => {
       try {
-        const response = await functions.getUser(userID); 
+        const response = await functions.getAllUsers(); 
         setUserID(response);
       } catch (error) {
         console.error('Error to get user:', error);
@@ -16,17 +17,18 @@ const GetUser = () => {
     };
 
     getUsersBackend();
-  }, []);
+  },[]);
+
 
   return (
     <div className="get-user-container">
       <h3 className="get-user-title">User</h3>
       <ul className="get-user-list">
-        {userID.map((user) => {
+        {userID.map((user) => (
           <li key={user.id}>
             ID: {user.id} - Username: {user.username} - Fullname: {user.fullname} - Email: {user.email} - Bio: {user.bio}
           </li>
-        })}
+        ))}
       </ul>
     </div>
   );

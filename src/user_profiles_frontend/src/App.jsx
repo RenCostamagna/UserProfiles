@@ -5,10 +5,7 @@ import "@connect2ic/core/style.css"
 import * as user_profiles_backend from "declarations/user_profiles_backend"
 import React from "react"
 
-import NewUser from "./components/NewUser"
-import { GetUser } from "./components/GetUser"
-import { UpdateUser } from "./components/UpdateUser"
-import { DeleteUser } from "./components/DeleteUser"
+
 import { Home } from "./components/Home"
 
 

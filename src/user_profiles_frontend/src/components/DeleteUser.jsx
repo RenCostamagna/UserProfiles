@@ -1,5 +1,6 @@
 import { useCanister } from '@connect2ic/react';
 import React, { useState } from 'react';
+import "./StylesComponents.css"
 
 const DeleteUser = () => {
   const [userID, setUserId] = useState('');

@@ -13,11 +13,13 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1>User Profiles</h1>
-          <div className="auth-section">
-            <ConnectButton />
-          </div>
-        <ConnectDialog />
+      <header className="app-header" > 
+        <h1 className="app-title" >User Profiles</h1>
+      </header>        
+            <div className="auth-section">
+              <ConnectButton />
+            </div>
+          <ConnectDialog />
       </div>
       <header className="App-header">
         

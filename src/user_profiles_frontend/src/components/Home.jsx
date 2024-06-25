@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-
+import "./StylesComponents.css";
 import NewUser from './NewUser';
 import { UpdateUser } from './UpdateUser';
 import { DeleteUser } from './DeleteUser';
 import { GetUser } from './GetUser';
+
 const Home = () => {
   const [accion, setAccion] = useState('set');
 
   return (
-    <div>
-      <h2>Home</h2>
-      <label>
-        Options:
+    <div className='home-user-container'>
+      <h2 className='home-user-title'>Home</h2>
+      <label className='home-user-label'>
+        Options: 
           <select value={accion} onChange={(e) => setAccion(e.target.value)}>
           <option value="set">Create User</option>
           <option value="update">Update user</option>

@@ -1,3 +1,13 @@
+.app-title{
+  font-size: 45px;
+  margin-bottom: 20px;
+  color: rgb(0, 0, 0);
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.app-header{
+  background-color: beige;
+}
 .new-user-container {
     max-width: 400px;
     margin: 0 auto;
@@ -79,7 +89,7 @@
 
 
 .delete-user-container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -136,3 +146,24 @@
         margin-bottom: 10px;
         text-align: center;
     }
+
+.home-user-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ced5cf56;
+}
+  .home-user-title {
+    font-size: 33px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .home-user-label{
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+  }

@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useCanister } from '@connect2ic/react';
 import "./StylesComponents.css";
+import { useCanister } from '@connect2ic/react';
 
 const GetUser = () => {
-  const [userID, setUserID] = useState([]);
+  const [userx, setUserX] = useState('');
+  const [users, setUser] = useState([]);
   const [functions] = useCanister('user_profiles_backend')
 
-  useEffect(() => {
-    const getUsersBackend = async () => {
-      try {
-        const response = await functions.getAllUsers(); 
-        setUserID(response);
-      } catch (error) {
-        console.error('Error to get user:', error);
-      }
-    };
+  const getUserxBackend = async (e) => {
+    e.preventDefault();
 
-    getUsersBackend();
-  },[]);
-
+    try{
+      const getUserx = await functions.getUser(userx)
+      console.log(getUserx)
+    }catch(error){
+      console.error(error);
+    }
+  }
 
   return (
     <div className="get-user-container">
-      <h3 className="get-user-title">User</h3>
+      <h2 className="get-user-title">User ID:</h2>
+      <label onSubmit={getUserxBackend}></label> 
+        <input className='get-user-input' type="text" value={userx} onChange={(e)=>setUserX(e.target.value)} />
       <ul className="get-user-list">
-        {userID.map((user) => (
-          <li key={user.id}>
-            ID: {user.id} - Username: {user.username} - Fullname: {user.fullname} - Email: {user.email} - Bio: {user.bio}
+          <li>
+            ID: {userx.id} - Username: {userx.username} - Fullname: {userx.fullname} - Email: {userx.email} - Bio: {userx.bio}
           </li>
-        ))}
       </ul>
     </div>
   );

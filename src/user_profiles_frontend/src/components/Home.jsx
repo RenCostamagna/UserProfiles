@@ -3,7 +3,7 @@ import "./StylesComponents.css";
 import NewUser from './NewUser';
 import { UpdateUser } from './UpdateUser';
 import { DeleteUser } from './DeleteUser';
-import { GetUser } from './GetUser';
+import  GetUser  from './GetUser';
 
 const Home = () => {
   const [accion, setAccion] = useState('set');

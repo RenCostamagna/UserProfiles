@@ -11,8 +11,8 @@ const GetUser = () => {
     e.preventDefault();
 
     try{
-      const getUserx = await functions.getUser(userx)
-      console.log(getUserx)
+      await functions.getUser(userx)
+      
     }catch(error){
       console.error(error);
     }
@@ -21,13 +21,13 @@ const GetUser = () => {
   return (
     <div className="get-user-container">
       <h2 className="get-user-title">User ID:</h2>
-      <label onSubmit={getUserxBackend}></label> 
+      <form className='get-user-form' onSubmit={getUserxBackend}>
         <input className='get-user-input' type="text" value={userx} onChange={(e)=>setUserX(e.target.value)} />
-      <ul className="get-user-list">
-          <li>
-            ID: {userx.id} - Username: {userx.username} - Fullname: {userx.fullname} - Email: {userx.email} - Bio: {userx.bio}
-          </li>
-      </ul>
+        <button type='submit' >Confirm</button>
+          <div>
+            Username: {userx.username} Fullname: {userx.fullname} Email: {userx.email} Bio: {userx.bio} 
+          </div>   
+        </form>
     </div>
   );
 };

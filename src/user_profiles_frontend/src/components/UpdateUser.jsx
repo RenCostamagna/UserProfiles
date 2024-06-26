@@ -29,7 +29,7 @@ const UpdateUser = () => {
       <h3 className='update-user-title'>Update user</h3>
       <form className='update-user-form' onSubmit={handleSubmit}>
         <label>
-         ID:
+         User ID to upgrade:
           <input type="text" value={id} onChange={(e) => setUserId(e.target.value)} />
         </label>
         <label>

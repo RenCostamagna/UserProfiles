@@ -11,7 +11,6 @@ actor UserProfile {
   type User = {
     username: Text;
     fullname: Text;
-    internetName: Text;
     email: Text;
     bio: Text; 
   };
@@ -20,6 +19,7 @@ actor UserProfile {
 
   stable var id: UserID = 0;
   let userList = HashMap.HashMap<Text, User>(0, Text.equal, Text.hash);
+
   private func generateID () : Nat32 {
     id += 1;
     return id;  
@@ -29,9 +29,8 @@ actor UserProfile {
     return (caller);
   };
 
-  public shared (msg) func createUser(username : Text, fullname: Text, email: Text, bio: Text): async () {
-    let interName: Text = Principal.toText(msg.caller);
-    let user = { username=username; fullname=fullname; internetName=interName; email=email; bio=bio };
+  public func createUser(username : Text, fullname: Text, email: Text, bio: Text): async () {
+    let user = { username=username; fullname=fullname; email=email; bio=bio };
     userList.put(Nat32.toText(generateID()), user);
     Debug.print("New user create! ID: " #Nat32.toText(id));
     return();
@@ -39,6 +38,7 @@ actor UserProfile {
   
   public query func getUser ( id: Text ): async ?User {
     let user: ?User = userList.get(id);
+    Debug.print("User ID: " #id);
     return (user);
   };
 
@@ -48,8 +48,7 @@ actor UserProfile {
     return userArray;
   };
 
-  public shared (msg) func updateUser (id: Text, username : Text, fullname: Text, email: Text, bio: Text): async Bool {
-    let interName: Text = Principal.toText(msg.caller);
+  public func updateUser (id: Text, username : Text, fullname: Text, email: Text, bio: Text): async Bool {
     let user: ?User = userList.get(id);
 
     switch (user) {
@@ -57,9 +56,9 @@ actor UserProfile {
         return false;
       };
       case (?currentUser) {
-        let newUser = { username=username; fullname=fullname; internetName=interName; email=email; bio=bio };
+        let newUser = { username=username; fullname=fullname; email=email; bio=bio };
         userList.put(id, newUser);
-        Debug.print("New user create! ID: " # id);
+        Debug.print("User updated! ID: " # id);
         return true;
       };
     };

@@ -17,7 +17,7 @@ function NewUser ()  {
         try{
 
             const newUser = await functions.createUser(username,fullname,email,bio);
-            console.log(newUser)
+            console.log(newUser.username)
 
         }catch(error){
 

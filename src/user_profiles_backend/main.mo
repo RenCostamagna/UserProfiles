@@ -30,7 +30,7 @@ actor UserProfile {
   };
 
   public func createUser(username : Text, fullname: Text, email: Text, bio: Text): async () {
-    let user = { username=username; fullname=fullname; email=email; bio=bio };
+    let user: User = { username=username; fullname=fullname; email=email; bio=bio };
     userList.put(Nat32.toText(generateID()), user);
     Debug.print("New user create! ID: " #Nat32.toText(id));
     return();

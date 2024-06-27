@@ -4,6 +4,7 @@ import NewUser from './NewUser';
 import { UpdateUser } from './UpdateUser';
 import { DeleteUser } from './DeleteUser';
 import  GetUser  from './GetUser';
+import { GetAllUsers } from './GetAllUsers';
 
 const Home = () => {
   const [accion, setAccion] = useState('set');
@@ -19,6 +20,7 @@ const Home = () => {
             <option value="update">Update user</option>
             <option value="get">Get user</option>
             <option value="delete">Delete user</option>
+            <option value="get-all">Get all users</option>
           </select>
         </label>
         {(() => {
@@ -31,6 +33,8 @@ const Home = () => {
               return <GetUser />;
             case 'delete':
               return <DeleteUser />;
+            case 'get-all':
+              return <GetAllUsers />
             default:
               return null;
           }

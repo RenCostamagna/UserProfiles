@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./StylesComponents.css";
 import { useCanister } from '@connect2ic/react';
 
+
 function GetUser () {
   const [userId, setUserId] = useState('');
   const [users, setUser] = useState(null);
@@ -29,12 +30,14 @@ function GetUser () {
         <input className='get-user-input' type="text" value={userId} onChange={handleChange} />
         <button type='submit' >Confirm</button>
       </form>
-        {users && (
+        {users ? (
           <div>
             <h3>Detalles del Usuario</h3>
             <p>ID: {users.fullname}</p>
             <p>Nombre: {users.username}</p>
           </div>
+        ):(
+          <p>Loading user</p>
         )}
     </div>
   );
